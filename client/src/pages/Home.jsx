@@ -22,12 +22,15 @@ const Home = () => {
     const fetchPost = async () => {
       setloading(true);
       try {
-        const response = await fetch("http://localhost:8080/api/v1/posts", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(
+          "https://dall-e-6awk.onrender.com/api/v1/posts",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
         if (response.ok) {
           const result = await response.json();
           setallPosts(result.data.reverse());
@@ -96,7 +99,10 @@ const Home = () => {
             )}
             <div className="grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 gap-3">
               {searchText ? (
-                <RenderCards data={searchResults} title="No search result found" />
+                <RenderCards
+                  data={searchResults}
+                  title="No search result found"
+                />
               ) : (
                 <RenderCards data={allPosts} title="No Posts found" />
               )}
